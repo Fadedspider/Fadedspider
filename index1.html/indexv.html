@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat UI</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Your CSS styles remain the same */
+        header {
+    background-color: #c1d5ad;
+    color: white;
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+header img {
+    height:70px;
+    width:70px;
+    margin-left:30px;
+    
+}
+   
+nav {
+    display: flex;
+    background-color: #4CAF50;
+    border-radius: 8px;
+    padding: 5px 0;
+    
+}
+
+.nav-btn {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-btn:hover {
+    background-color: #45a049;
+}
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            background-image: url(https://i.pinimg.com/originals/a9/4a/ee/a94aee835e16cff4f14c83dac8ffbe10.gif);
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff;
+        }
+
+        .chat-container {
+            width: 100%;
+            height: 80%;
+            position: relative;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background: rgba(21, 19, 19, 0.8);
+        }
+
+        
+
+        .chat-header {
+            background-image:url(https://i.pinimg.com/originals/be/f4/1a/bef41a7d5a877841bbf7d8f9f0d42f14.gif);
+            color: white;
+            font-size: large;
+            padding: 15px;
+            text-align: center;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            width: fit-content;
+            max-width: 80%;
+        }
+
+        .user-message {
+            text-align: left;
+            background-color: #d1e7dd;
+        }
+
+        .ai-message {
+            text-align: right;
+            background-color: #0078d4;
+            color: white;
+            margin-left: auto;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #111010;
+            position: relative;
+            z-index: 1;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #0a09099c;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .chat-input button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #0078d4;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .chat-input button:hover {
+            background-color: #005a9e;
+        }
+
+        /* New styles for the navigation bar */
+        nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        nav a {
+            color: rgb(12, 12, 12);
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="gif/logo.jpg" alt="CropVision Logo" class="logo-image" >
+            
+        </div>
+        <nav>
+            <a href="#" class="nav-btn">Home</a>
+            <a href="#" class="nav-btn">About us</a>
+            <a href="#" class="nav-btn">Blogs</a>
+        </nav>
+    </header>
+    <div class="chat-container">
+        <div class="chat-header">Chat with CropVision AI</div>
+        <div class="chat-messages">
+            <div class="message user-message"> Hi! I need some help with HTML and CSS.</div>
+            <div class="message ai-message">how can i help you</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="messageInput" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script>
+        function sendMessage() {
+            // Get the input element
+            var input = document.getElementById('messageInput');
+            // Get the value of the input
+            var message = input.value;
+            // If there's a message
+            if (message.trim() !== '') {
+                // Create a new div for the message
+                var newMessage = document.createElement('div');
+                newMessage.className = 'message user-message';
+                newMessage.textContent = message;
+                // Add the message to the chat messages container
+                document.querySelector('.chat-messages').appendChild(newMessage);
+                // Clear the input
+                input.value = '';
+                // Scroll to the bottom of the chat
+                var chatMessages = document.querySelector('.chat-messages');
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        }
+
+        // Add event listener for Enter key
+        document.getElementById('messageInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+</body>
+</html>
